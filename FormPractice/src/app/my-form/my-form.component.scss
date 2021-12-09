@@ -1,0 +1,115 @@
+:host
+{
+    // height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    align-items: center;
+}
+
+.maker
+{
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 30px;
+
+    justify-content: space-around;
+    align-items: center;
+}
+
+:host > *
+{
+    padding: 10px;
+}
+
+form
+{
+    padding: 8px;
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+
+    border: 1px solid black;
+}
+
+form > div
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
+
+.preview
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.outer_box
+{
+    max-width: 500px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    border: 1px solid black;
+}
+
+.top_section
+{
+    padding: 5px;
+}
+
+.bottom_section
+{
+    padding: 0px 8px 8px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 5px;
+}
+
+.comment_box
+{
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.results
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+textarea
+{
+    resize: none;
+    border: none;
+    background-color: inherit;
+}
+
+img
+{
+    width: 100px;
+    height: 100px;
+}
+
+.title
+{
+    font-size: xx-large;
+}
+
+.name
+{
+    font-size: x-large;
+}
+
+.comment
+{
+    font-size: larger;
+}

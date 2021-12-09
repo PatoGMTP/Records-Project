@@ -1,0 +1,115 @@
+<div class="title">
+    <span>Tag-Maker 9000</span>
+</div>
+
+<div class="maker">
+    <form #myform="ngForm" (ngSubmit)="onSubmit(myform)" ngNativeValidate>
+        <div class="name_div">
+            <!-- Name -->
+            <label for="name">Please enter name:</label>
+            <input type="text" name="name" placeholder="Name" [(ngModel)]="name" required>
+        </div>
+    
+        <div class="comment_div">
+            <!-- Comment -->
+            <label for="comment">Please enter comment:</label>
+            <input type="text" name="comment" placeholder="Comment" [(ngModel)]="comment">
+        </div>
+    
+        <div class="picture_div">
+            <!-- Picture -->
+            <label for="picture">Please choose a picture:</label>
+            <select name="picture" id="picture" [(ngModel)]="picture" required>
+                <option value=""></option>
+                <option *ngFor="let tuple of picture_options" [value]="tuple[1]">{{tuple[0]}}</option>
+            </select>
+        </div>
+    
+        <div class="color_div">
+            <!-- Color -->
+            <label for="color">Please choose a color:</label>
+            <select name="color" id="color" [(ngModel)]="color">
+                <option value="white"></option>
+                <option *ngFor="let tuple of color_options" [value]="tuple[1]">{{tuple[0]}}</option>
+            </select>
+        </div>
+    
+        <div class="theme_div">
+            <!-- Theme -->
+            <label for="theme">Please choose a theme:</label>
+            <select name="theme" id="theme" [(ngModel)]="theme" (change)="setTheme()">
+                <option value="normal"></option>
+                <option *ngFor="let tuple of theme_options" [value]="tuple[1]">{{tuple[0]}}</option>
+            </select>
+        </div>
+    
+        <button type="submit">Save Tag</button>
+    
+    </form>
+    
+    <div class="preview">
+        <span>Tag Preview:</span>
+    <!-- 
+    
+      ---------------------------
+     |   Name                    |
+     |  ----------------         |
+     | | Comment        |   Pic  |
+     | |                |        |
+     |  ----------------         |
+      ---------------------------
+     
+    -->
+    
+        <div class="outer_box" [ngStyle]="{'background-color': color}">
+            <div class="top_section">
+                <!-- Name Box -->
+                <span [ngStyle]="{'color': color}">|</span>
+                <span class="name" [ngStyle]="font_options">{{name}}</span>
+            </div>
+            <div class="bottom_section">
+                <div class="comment_box">
+                    <!-- Comment -->
+                    <span [ngStyle]="{'color': color}">|</span>
+                    <textarea class="comment" rows="2" cols="30" [ngStyle]="font_options" *ngIf="comment; else filler" readonly>"{{comment}}"</textarea>
+                </div>
+                <div class="pic">
+                    <!-- Pic -->
+                    <!-- {{picture[0]}} -->
+                    <!-- {{picture[1]}} -->
+                    <!-- <span [textContent]="picture"></span> -->
+                    <!-- {{picture}} -->
+                    <img [src]="picture" alt="">
+                </div>
+            </div>
+    
+            <!-- Everything in this box is {{color}}
+            <br>
+            The text in this box is {{theme}} -->
+        </div>
+    </div>
+</div>
+
+<div class="results">
+    <span>List of Tags Made:</span>
+    <div class="outer_box" [ngStyle]="{'background-color': tag.color}" *ngFor="let tag of tag_list">
+        <div class="top_section">
+            <span [ngStyle]="{'color': tag.color}">|</span>
+            <span class="name" [ngStyle]="tag.font_options">{{tag.name}}</span>
+        </div>
+        <div class="bottom_section">
+            <div class="comment_box">
+                <span [ngStyle]="{'color': tag.color}">|</span>
+                <textarea class="comment" rows="2" cols="30" [ngStyle]="tag.font_options" *ngIf="tag.comment; else filler" readonly>"{{tag.comment}}"</textarea>
+            </div>
+            <div class="pic">
+                <!-- {{tag.picture}} -->
+                <img [src]="tag.picture" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #filler>
+    <textarea class="comment" rows="2" cols="30" [ngStyle]="{'color': color}" readonly></textarea>
+</ng-template>
